@@ -1,7 +1,10 @@
 # app/controllers/users/omniauth_callbacks_controller.rb
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
-    user = User.from_google(from_google_params)
+
+
+
+    user = User.from_omniauth(request.env["omniauth.auth"])
 
     if user.present?
       sign_out_all_scopes
